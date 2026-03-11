@@ -48,28 +48,28 @@ function NeighborhoodList() {
       {/* Filters */}
       <div className="filter-bar">
 
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-        />
+  <input
+    type="text"
+    placeholder="Search by name..."
+    value={searchQuery}
+    onChange={e => setSearchQuery(e.target.value)}
+  />
 
-        <input
-          type="number"
-          placeholder="Min Safety Score"
-          value={minSafety}
-          onChange={e => setMinSafety(e.target.value)}
-        />
+  <input
+    type="number"
+    placeholder="Min Safety Score"
+    value={minSafety}
+    onChange={e => setMinSafety(e.target.value)}
+  />
 
-        <input
-          type="number"
-          placeholder="Max Rent"
-          value={maxRent}
-          onChange={e => setMaxRent(e.target.value)}
-        />
+  <input
+    type="number"
+    placeholder="Max Rent"
+    value={maxRent}
+    onChange={e => setMaxRent(e.target.value)}
+  />
 
-      </div>
+</div>
 
       {/* MAP */}
       <NeighborhoodMap neighborhoods={filteredNeighborhoods} />
