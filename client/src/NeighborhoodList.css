@@ -204,12 +204,14 @@
 .filter-item {
   display: flex;
   flex-direction: column;
+  color: white;
 }
 
 .filter-item label {
-  font-size: 13px;
-  margin-bottom: 5px;
-  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #00e0ff;
+  font-weight: 600;
 }
 .map-link {
   display: inline-block;
