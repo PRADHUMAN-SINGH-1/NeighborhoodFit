@@ -30,7 +30,9 @@ app.get('/api/neighborhoods', (req, res) => {
       };
 
       neighborhood.lifestyle_tags = generateLifestyleTags(neighborhood);
-      neighborhoods.push(neighborhood);
+neighborhood.match_score = calculateMatchScore(neighborhood);
+
+neighborhoods.push(neighborhood);
     })
     .on('end', () => {
       res.json(neighborhoods);
@@ -70,17 +72,45 @@ function generateLifestyleTags(neighborhood) {
   if (schools >= 3 && parks >= 2) {
     tags.push("👨‍👩‍👧‍👦 Family-Friendly");
   }
+
   if (metro <= 2.5 && rent > 20000) {
     tags.push("💼 Working Professionals");
   }
+
   if (safety >= 7.5 && parks >= 3) {
     tags.push("🧘 Quiet Neighborhoods");
   }
+
   if (metro <= 1.5) {
     tags.push("🧍‍♂️ Walkable & Connected");
   }
 
   return tags;
+}
+function calculateMatchScore(neighborhood) {
+  let score = 0;
+
+  const safety = parseFloat(neighborhood.safety_score) || 0;
+  const rent = parseInt(neighborhood.avg_rent) || 0;
+  const metro = parseFloat(neighborhood.metro_nearby_km) || 10;
+  const parks = parseInt(neighborhood.parks_nearby) || 0;
+  const schools = parseInt(neighborhood.schools_nearby) || 0;
+
+  // Safety weight
+  score += safety * 5;
+
+  // Metro proximity
+  if (metro <= 1) score += 20;
+  else if (metro <= 2.5) score += 10;
+
+  // Parks & schools
+  score += parks * 2;
+  score += schools * 1.5;
+
+  // Affordable rent bonus
+  if (rent < 25000) score += 10;
+
+  return Math.round(score);
 }
 
 
