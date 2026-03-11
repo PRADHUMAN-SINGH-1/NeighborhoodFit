@@ -193,7 +193,13 @@
   color: #ff9800;
   font-weight: bold;
 }
+/* Map container */
 
+.leaflet-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,255,255,0.15);
+}
 .map-link {
   display: inline-block;
   margin-top: 10px;
