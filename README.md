@@ -4,7 +4,8 @@
 This website uses **free backend hosting on Render**, so the first API request may take **up to 1 minute** when the server wakes up.
 
 🔗 **Live Demo:** https://neighborhoodfit.netlify.app  
-Backup link:** neighborhoodfit.vercel.app
+Backup link:** https://neighborhoodfit.vercel.app
+
 🌐 **Backend API:** https://neighborfit-y283.onrender.com/api/neighborhoods  
 
 **NeighborhoodFit** is a full-stack web application that helps users explore suitable neighborhoods in **Bengaluru, India** based on 🛡️ safety, 💰 rent level, 🚇 metro access, and 🌱 lifestyle indicators.
