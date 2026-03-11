@@ -45,29 +45,35 @@ function NeighborhoodList() {
 
       <h1 className="heading">🏘️ Bengaluru Neighborhoods</h1>
 
-      {/* Filters */}
       <div className="filter-bar">
 
-  <input
-    type="text"
-    placeholder="Search by name..."
-    value={searchQuery}
-    onChange={e => setSearchQuery(e.target.value)}
-  />
+  <div className="filter-item">
+    <label>Search Area</label>
+    <input
+      type="text"
+      placeholder="Enter area name"
+      value={searchQuery}
+      onChange={e => setSearchQuery(e.target.value)}
+    />
+  </div>
 
-  <input
-    type="number"
-    placeholder="Min Safety Score"
-    value={minSafety}
-    onChange={e => setMinSafety(e.target.value)}
-  />
+  <div className="filter-item">
+    <label>Minimum Safety Score</label>
+    <input
+      type="number"
+      value={minSafety}
+      onChange={e => setMinSafety(e.target.value)}
+    />
+  </div>
 
-  <input
-    type="number"
-    placeholder="Max Rent"
-    value={maxRent}
-    onChange={e => setMaxRent(e.target.value)}
-  />
+  <div className="filter-item">
+    <label>Maximum Rent (₹)</label>
+    <input
+      type="number"
+      value={maxRent}
+      onChange={e => setMaxRent(e.target.value)}
+    />
+  </div>
 
 </div>
 
