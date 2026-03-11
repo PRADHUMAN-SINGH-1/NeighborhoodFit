@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './NeighborhoodList.css';
-import NeighborhoodMap from "./NeighborhoodMap";
+
 
 function NeighborhoodList() {
 
