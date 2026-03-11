@@ -11,8 +11,14 @@ function NeighborhoodList() {
   const [minSafety, setMinSafety] = useState(0);
   const [maxRent, setMaxRent] = useState(100000);
 
+  // API URL for local + production
+  const API_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://neighborfit-y283.onrender.com"
+      : "http://localhost:5050";
+
   useEffect(() => {
-    axios.get('http://localhost:5050/api/neighborhoods')
+    axios.get(`${API_URL}/api/neighborhoods`)
       .then(response => setNeighborhoods(response.data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
@@ -65,7 +71,7 @@ function NeighborhoodList() {
 
       </div>
 
-      {/* MAP SECTION (NEW) */}
+      {/* MAP */}
       <NeighborhoodMap neighborhoods={filteredNeighborhoods} />
 
 
