@@ -6,7 +6,6 @@ import NeighborhoodMap from "./NeighborhoodMap";
 function NeighborhoodList() {
 
   const [neighborhoods, setNeighborhoods] = useState([]);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [minSafety, setMinSafety] = useState(0);
   const [maxRent, setMaxRent] = useState(100000);
@@ -18,10 +17,11 @@ function NeighborhoodList() {
       : "http://localhost:5050";
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/neighborhoods`)
+    axios
+      .get(`${API_URL}/api/neighborhoods`)
       .then(response => setNeighborhoods(response.data))
       .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  }, [API_URL]);   // ✅ FIXED HERE
 
   const filteredNeighborhoods = neighborhoods
     .filter(n => {
@@ -74,7 +74,6 @@ function NeighborhoodList() {
       {/* MAP */}
       <NeighborhoodMap neighborhoods={filteredNeighborhoods} />
 
-
       {/* Top neighborhoods */}
       <div className="top-section">
 
@@ -97,7 +96,6 @@ function NeighborhoodList() {
         </div>
 
       </div>
-
 
       {/* Cards */}
       <div className="card-grid">
@@ -183,4 +181,3 @@ function NeighborhoodList() {
 }
 
 export default NeighborhoodList;
-// redeploy
