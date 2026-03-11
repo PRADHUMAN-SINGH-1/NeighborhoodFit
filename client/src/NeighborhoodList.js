@@ -78,7 +78,7 @@ function NeighborhoodList() {
 </div>
 
       {/* MAP */}
-      <NeighborhoodMap neighborhoods={filteredNeighborhoods} />
+      
 
       {/* Top neighborhoods */}
       <div className="top-section">
@@ -117,7 +117,7 @@ function NeighborhoodList() {
             <h2>{n.name}</h2>
 
             <p className="match-score">
-              ⭐ Match Score: {n.match_score || 'N/A'}
+              ⭐ Lifestyle Match Score: {n.match_score || 'N/A'}
             </p>
 
             <p><strong>Ward:</strong> {n.ward || 'N/A'}</p>
