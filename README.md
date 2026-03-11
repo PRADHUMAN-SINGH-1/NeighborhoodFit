@@ -1,169 +1,312 @@
 # 🏙️ NeighborhoodFit
 
-🔴 **Important Note**  
+🔴 **Important Note**
 This website uses **free backend hosting on Render**, so the first API request may take **up to 1 minute** when the server wakes up.
 
-🔗 **Live Demo:** https://neighborhoodfit.netlify.app  
-Backup link:** https://neighborhoodfit.vercel.app
+🔗 **Live Demo:** https://neighborhoodfit.netlify.app
+🔗 **Backup Link:** https://neighborhoodfit.vercel.app
 
-🌐 **Backend API:** https://neighborfit-y283.onrender.com/api/neighborhoods  
-
-**NeighborhoodFit** is a full-stack web application that helps users explore suitable neighborhoods in **Bengaluru, India** based on 🛡️ safety, 💰 rent level, 🚇 metro access, and 🌱 lifestyle indicators.
+🌐 **Backend API:**
+https://neighborfit-y283.onrender.com/api/neighborhoods
 
 ---
 
-## 📡 What does it do?
+# 📍 About the Project
+
+**NeighborhoodFit** is a full-stack web application that helps users explore suitable neighborhoods in **Bengaluru, India** based on:
+
+* 🛡️ Safety levels
+* 💰 Average rent levels
+* 🚇 Metro accessibility
+* 🌱 Lifestyle indicators like parks and schools
+
+Instead of browsing random property listings, the platform helps users **quickly identify the best areas using a data-driven scoring system.**
+
+---
+
+# 📡 What does it do?
 
 Whether you're moving to Bengaluru or exploring better places to live, **NeighborhoodFit** lets you:
 
-- 📍 View **relative safety scores** of neighborhoods  
-- 💰 Compare **average rent levels**  
-- 🚇 Filter areas by **metro station proximity**  
-- 🌱 Explore nearby **parks, schools, and lifestyle factors**  
-- 🔍 Search and filter neighborhoods easily  
-- 🏷️ Understand tags like **Family-Friendly** or **Walkable** using colorful badges  
+* 📍 View **relative safety scores** of neighborhoods
+* 💰 Compare **average rent levels**
+* 🚇 Filter areas by **metro proximity**
+* 🌱 Explore nearby **parks and schools**
+* 🔍 Search and filter neighborhoods instantly
+* 🏆 Discover **Top Ranked Areas** using an algorithmic scoring system
+* 🏷️ Understand lifestyle tags like **Family-Friendly** or **Walkable**
 
 ---
 
-## 📊 Where did the data come from?
+# 🧠 Smart Ranking System (Match Score)
 
-The data used in this app was **carefully created**, not randomly downloaded.
+Each neighborhood is assigned a **Match Score** that ranks areas based on multiple lifestyle factors.
 
-### 📥 Base Geo & Place Data
-- 🛠️ Tool Used: **Overpass Turbo**
-- 🗺️ Map Source: **OpenStreetMap**
+This score helps highlight the **most suitable neighborhoods automatically**.
 
-Using Overpass queries, the following data was extracted:
-- Neighborhood names
-- Geographic coordinates
-- Nearby metro stations
-- Parks and schools
-- Roads and points of interest
+### 📊 Factors Used
 
-### 🧾 Dataset Enrichment
-The raw data was then **manually processed and enriched** with:
-- 🛡️ Relative safety scores  
-- 💰 Rent level categories (based on market trends)  
-- 🚇 Metro proximity labels  
-- 🏷️ Lifestyle tags (walkability, family-friendliness, quiet areas)
+* 🛡️ Safety score
+* 🚇 Distance to metro station
+* 🌳 Number of parks nearby
+* 🏫 Number of schools nearby
+* 💰 Rent affordability
 
-📁 **Final Dataset:** `bengaluru_neighborhoods.csv`  
-Stored on the backend server and served through an API.
+### 🧮 Example Logic
 
----
+```
+Match Score =
+(Safety × 5)
++ Metro Proximity Bonus
++ Parks Score
++ Schools Score
++ Rent Affordability Bonus
+```
 
-## 🔐 How the Safety (Crime) Score was calculated
-
-- Official ward-wise crime data is not fully public.
-- A **proxy-based safety score** was created for **relative comparison only**.
-
-### 🧩 Indicators Used
-- 🏫 **Amenity Density:** Schools, parks, hospitals, shops  
-- 🛣️ **Road Connectivity:** Road network density  
-- 🏙️ **Public Activity:** Commercial places and transport stops  
-
-### 🧮 Formula Used
-Safety Score =  
-(Amenity Density + Road Connectivity + Public Activity) / 3  
-
-- All values were **min–max normalized (0–1)**
-- Equal weights were used to avoid bias
-
-### 📈 Interpretation
-- Higher score → relatively safer neighborhood  
-- Lower score → relatively less safe neighborhood  
-- ⚠️ This is **not official crime data**
+Higher score → **better lifestyle match**
 
 ---
 
-## 🎨 How Lifestyle Badges were calculated
+# 🏆 Top Neighborhood Leaderboard
 
-Each neighborhood includes lifestyle tags such as:
+The system automatically:
 
-- 🧑‍👩‍👧 **Family-Friendly**  
-- 💼 **Working Professionals**  
-- 🤫 **Quiet Neighborhoods**  
-- 🚶 **Walkable & Connected**  
+* Sorts neighborhoods by **Match Score**
+* Displays a **Top Neighborhoods leaderboard**
+* Highlights the **Top Areas** with a special badge
 
-### 🏷️ Tag Logic
-- **Family-Friendly:** High number of schools and parks  
-- **Working Professionals:** Office and co-working density  
-- **Quiet Neighborhoods:** Lower traffic and commercial activity  
-- **Walkable & Connected:** Metro proximity, parks, road connectivity  
+Example:
+
+```
+🏆 Top Neighborhoods
+
+1️⃣ Someshettihalli  
+2️⃣ Jothinagar  
+3️⃣ Goripalya  
+4️⃣ Gorkamantapalya  
+5️⃣ Valmiki Nagar
+```
+
+Top ranked cards also display:
+
+```
+🏆 Top Area
+```
+
+This allows users to quickly identify **the best neighborhoods at a glance**.
 
 ---
 
-## 🖥️ Project Structure
+# 📊 Where did the data come from?
 
+The data used in this project was **carefully created and enriched**, not randomly downloaded.
+
+## 📥 Base Geo & Place Data
+
+**Source Tools**
+
+* 🛠️ **Overpass Turbo**
+* 🗺️ **OpenStreetMap**
+
+Using Overpass queries, the following information was extracted:
+
+* Neighborhood names
+* Geographic coordinates
+* Nearby metro stations
+* Parks and schools
+* Road networks and points of interest
+
+---
+
+## 🧾 Dataset Enrichment
+
+The raw dataset was then **processed and enriched manually** with additional attributes:
+
+* 🛡️ Relative safety scores
+* 💰 Rent level estimates
+* 🚇 Metro proximity indicators
+* 🏷️ Lifestyle tags
+
+📁 **Final Dataset:**
+
+```
+bengaluru_neighborhoods.csv
+```
+
+This dataset is served via the backend API.
+
+---
+
+# 🔐 Safety Score Methodology
+
+Official ward-wise crime data is not publicly available in structured format.
+
+Therefore a **proxy-based safety score** was created using urban indicators.
+
+### Indicators Used
+
+* 🏫 Amenity Density
+  (schools, parks, hospitals, shops)
+
+* 🛣️ Road Connectivity
+  (density of road network)
+
+* 🏙️ Public Activity
+  (commercial places and transit stops)
+
+### Formula
+
+```
+Safety Score =
+(Amenity Density + Road Connectivity + Public Activity) / 3
+```
+
+Values were **min-max normalized between 0 and 1**.
+
+⚠️ This score is **comparative only**, not official crime statistics.
+
+---
+
+# 🎨 Lifestyle Badges
+
+Each neighborhood automatically receives **lifestyle tags**.
+
+Examples:
+
+* 🧑‍👩‍👧 **Family-Friendly**
+* 💼 **Working Professionals**
+* 🤫 **Quiet Neighborhoods**
+* 🚶 **Walkable & Connected**
+
+### Tag Logic
+
+**Family-Friendly**
+
+* High number of schools and parks
+
+**Working Professionals**
+
+* Higher office and commercial density
+
+**Quiet Neighborhoods**
+
+* Lower commercial activity
+
+**Walkable & Connected**
+
+* Close metro stations and dense road connectivity
+
+---
+
+# 🖥️ Project Structure
+
+```
 NeighborFit/
-- client/
-  - src/
-    - App.js
-    - App.css
-    - NeighborhoodList.js
-    - NeighborhoodList.css
-- server/
-  - data/
-    - bengaluru_neighborhoods.csv
-  - index.js
-- README.md
+│
+├── client/
+│   └── src/
+│       ├── App.js
+│       ├── App.css
+│       ├── NeighborhoodList.js
+│       ├── NeighborhoodList.css
+│
+├── server/
+│   └── data/
+│       └── bengaluru_neighborhoods.csv
+│
+├── server/index.js
+└── README.md
+```
 
 ---
 
-## 🧰 Tech Stack
+# 🧰 Tech Stack
 
-- 🎨 **Frontend:** React.js, Tailwind CSS  
-- ⚙️ **Backend:** Node.js, Express  
-- 📊 **Data:** OpenStreetMap (via Overpass Turbo)  
-- ☁️ **Hosting:** Netlify (Frontend), Render (Backend)  
+### Frontend
 
----
+* React.js
+* CSS
 
-## 🚀 Key Features
+### Backend
 
-- ✅ Dynamic filtering by safety, rent, and metro access  
-- 🏷️ Smart lifestyle badges with animations  
-- 📱 Fully responsive UI  
-- 🗺️ Google Maps links for neighborhoods  
-- 🔄 API-based data fetching  
+* Node.js
+* Express.js
 
----
+### Data Source
 
-## ⚙️ Backend Overview
+* OpenStreetMap
+* Overpass Turbo
 
-- Built using **Node.js + Express**
-- CSV parsed using `csv-parser`
-- Public API endpoint:
-  /api/neighborhoods
-- Deployed on **Render** with GitHub auto-deploy
+### Hosting
+
+* Netlify (Frontend)
+* Render (Backend)
 
 ---
 
-## 🌐 Frontend Integration
+# 🚀 Key Features
 
-- React fetches data using `useEffect`
-- API base URL stored in environment variables
-- Frontend hosted on **Netlify**
-
----
-
-## 👤 Author
-
-Made by **Pradhuman Singh**  
-GitHub: https://github.com/PRADHUMAN-SINGH-1  
-
-Built with 💙 to demonstrate:
-- Real-world data handling
-- Explainable scoring logic
-- Full-stack deployment
-- Zero-budget hosting
+* 🔍 Dynamic filtering by safety, rent, and metro access
+* 🧠 Smart **Match Score ranking algorithm**
+* 🏆 **Top Neighborhood leaderboard**
+* 🏷️ Lifestyle tags with visual badges
+* 📱 Fully responsive card-based UI
+* 🔄 API-driven data loading
+* 🗺️ Direct Google Maps links for each area
 
 ---
 
-## 📌 Notes for Reviewers / HR
+# ⚙️ Backend Overview
 
-This project highlights my ability to:
-- Work with **real geospatial data**
-- Design **dataset-driven UI badges**
-- Build and deploy **full-stack applications**
-- Solve data limitations using practical approaches
+Backend built using **Node.js + Express**.
+
+Responsibilities:
+
+* Parse dataset using `csv-parser`
+* Generate lifestyle tags
+* Calculate **match scores**
+* Serve neighborhoods via API
+
+### API Endpoint
+
+```
+/api/neighborhoods
+```
+
+Backend is deployed on **Render** with GitHub auto-deploy.
+
+---
+
+# 🌐 Frontend Integration
+
+Frontend built using **React**.
+
+Features:
+
+* Data fetched using `useEffect`
+* Dynamic filtering
+* Automatic ranking display
+* Clean responsive UI
+
+Frontend hosted on **Netlify**.
+
+---
+
+# 👤 Author
+
+**Pradhuman Singh**
+
+GitHub
+https://github.com/PRADHUMAN-SINGH-1
+
+---
+
+# 📌 Notes for Reviewers / HR
+
+This project demonstrates my ability to:
+
+* Work with **real geospatial datasets**
+* Design **data-driven ranking algorithms**
+* Build **full-stack web applications**
+* Handle **imperfect real-world data**
+* Deploy systems using **zero-budget infrastructure**
