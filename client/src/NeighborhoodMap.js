@@ -7,7 +7,12 @@ function NeighborhoodMap({ neighborhoods }) {
     <MapContainer
       center={[12.9716, 77.5946]}
       zoom={11}
-      style={{ height: "500px", width: "100%", marginBottom: "40px" }}
+      style={{
+  height: "450px",
+  width: "95%",
+  margin: "40px auto",
+  borderRadius: "12px"
+}}
     >
       <TileLayer
         attribution="&copy; OpenStreetMap contributors"
