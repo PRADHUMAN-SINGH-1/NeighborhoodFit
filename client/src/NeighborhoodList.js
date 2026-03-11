@@ -110,9 +110,9 @@ function NeighborhoodList() {
 
           <div key={i} className="card">
 
-            {n.match_score > 70 && (
-              <span className="top-area-badge">🏆 Top Area</span>
-            )}
+            {i < 5 && (
+  <span className="top-area-badge">🏆 Top Area</span>
+)}
 
             <h2>{n.name}</h2>
 
