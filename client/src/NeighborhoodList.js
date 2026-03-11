@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './NeighborhoodList.css';
+import NeighborhoodMap from "./NeighborhoodMap";
 
 function NeighborhoodList() {
 
@@ -63,6 +64,9 @@ function NeighborhoodList() {
         />
 
       </div>
+
+      {/* MAP SECTION (NEW) */}
+      <NeighborhoodMap neighborhoods={filteredNeighborhoods} />
 
 
       {/* Top neighborhoods */}
@@ -130,7 +134,6 @@ function NeighborhoodList() {
 
             </div>
 
-
             <div className="lifestyle-tags">
 
               {n.lifestyle_tags && n.lifestyle_tags.map((tag, idx) => {
@@ -151,7 +154,6 @@ function NeighborhoodList() {
               })}
 
             </div>
-
 
             {n.lat && n.lon && (
               <a
